@@ -2,7 +2,8 @@ package edu.csc413.calculator.operators;
 
 import edu.csc413.calculator.evaluator.Operand;
 
-public class MultiplyOperator {
+public class MultiplyOperator extends Operator
+{
 
     private final int multiplyPriority = 2;
     /**
@@ -34,7 +35,7 @@ public class MultiplyOperator {
      */
     public static Operator getOperator(String token)
     {
-        return null;
+        return Operator.getOperator(token);
     }
 
 
@@ -45,6 +46,6 @@ public class MultiplyOperator {
      * Think about what happens if we add more operators.
      */
     public static boolean check(String token) {
-        return false; //use hashmap to check token
+        return Operator.check(token);
     }
 }

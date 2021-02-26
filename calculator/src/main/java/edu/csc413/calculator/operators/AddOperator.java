@@ -35,7 +35,7 @@ public class AddOperator extends Operator
      */
     public static Operator getOperator(String token)
     {
-        return null;
+        return Operator.getOperator(token);
     }
 
 
@@ -46,6 +46,6 @@ public class AddOperator extends Operator
      * Think about what happens if we add more operators.
      */
     public static boolean check(String token) {
-        return false; //use hashmap to check token
+        return Operator.check(token);
     }
 }

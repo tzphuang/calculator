@@ -2,7 +2,8 @@ package edu.csc413.calculator.operators;
 
 import edu.csc413.calculator.evaluator.Operand;
 
-public class PowerOperator {
+public class PowerOperator extends Operator
+{
     private final int powerPriority = 3;
     /**
      * retrieve the priority of an Operator
@@ -36,7 +37,7 @@ public class PowerOperator {
         //super.getOperator(token);
         //cant do the above cause of static keyword
         //so i guess i just copy and paste the same method in each getOperator method
-        return null;
+        return Operator.getOperator(token);
     }
 
 
@@ -47,6 +48,6 @@ public class PowerOperator {
      * Think about what happens if we add more operators.
      */
     public static boolean check(String token) {
-        return false; //use hashmap to check token
+        return Operator.check(token);
     }
 }

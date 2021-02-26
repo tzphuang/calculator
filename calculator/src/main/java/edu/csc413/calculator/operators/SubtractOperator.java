@@ -2,7 +2,8 @@ package edu.csc413.calculator.operators;
 
 import edu.csc413.calculator.evaluator.Operand;
 
-public class SubtractOperator {
+public class SubtractOperator extends Operator
+{
     private final int subtractPriority = 1;
     /**
      * retrieve the priority of an Operator
@@ -33,7 +34,7 @@ public class SubtractOperator {
      */
     public static Operator getOperator(String token)
     {
-        return null;
+        return Operator.getOperator(token);
     }
 
 
@@ -44,6 +45,6 @@ public class SubtractOperator {
      * Think about what happens if we add more operators.
      */
     public static boolean check(String token) {
-        return false; //use hashmap to check token
+        return Operator.check(token);
     }
 }

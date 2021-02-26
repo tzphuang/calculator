@@ -15,16 +15,16 @@ public abstract class Operator {
     // HashMap operators = new HashMap();
     // operators.put( "+", new AdditionOperator() );
     // operators.put( "-", new SubtractionOperator() );
-
-    private static Map<String, Operator> operators; //operators is the name of my map
+    
+    private static HashMap<String, Operator> operators; //operators is the name of my map
 
     static{//static block used to initialize the hashmap for operators only once
-        operators = new HashMap<>();
-        operators.put("+", new AddOperator());
-        operators.put("-", new SubtractOperator());
-        operators.put("*", new MultiplyOperator());
-        operators.put("/", new DivideOperator());
-        operators.put("^", new PowerOperator());
+        Operator.operators = new HashMap<>();
+        Operator.operators.put("+", new AddOperator());
+        Operator.operators.put("-", new SubtractOperator());
+        Operator.operators.put("*", new MultiplyOperator());
+        Operator.operators.put("/", new DivideOperator());
+        Operator.operators.put("^", new PowerOperator());
     }
 
     /**
@@ -50,7 +50,8 @@ public abstract class Operator {
      * @return reference to a Operator instance.
      */
     public static Operator getOperator(String token) {
-        return null;
+
+        return operators.get(token);
     }
 
     
@@ -60,7 +61,8 @@ public abstract class Operator {
      * for example token.equals("+") and so on.
      * Think about what happens if we add more operators.
      */
-    public static boolean check(String token) {
-        return false;
+    public static boolean check(String token)
+    {
+        return operators.containsKey(token);
     }
 }
