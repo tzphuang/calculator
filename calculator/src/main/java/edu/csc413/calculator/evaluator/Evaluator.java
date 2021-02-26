@@ -50,9 +50,13 @@ public class Evaluator {
           // The Operator class should contain an instance of a HashMap,
           // and values will be instances of the Operators.  See Operator class
           // skeleton for an example.
-          Operator newOperator = new Operator();
-        
-          while (operatorStack.peek().priority() >= newOperator.priority() ) {
+
+          Operator newOperator = Operator.getOperator(expressionToken);
+
+          //check to see if this while loop fits the alogrithm asserted earlier
+          while (operatorStack.peek().priority() >= newOperator.priority() )
+          {
+
             // note that when we eval the expression 1 - 2 we will
             // push the 1 then the 2 and then do the subtraction operation
             // This means that the first number to be popped is the
@@ -79,6 +83,6 @@ public class Evaluator {
     // that is, we should keep evaluating the operator stack until it is empty;
     // Suggestion: create a method that processes the operator stack until empty.
 
-    return 0;
+    return 0; //remember to change return 0 to the ACTUAL output of the expression
   }
 }

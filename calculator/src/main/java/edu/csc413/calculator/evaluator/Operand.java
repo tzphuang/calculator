@@ -11,11 +11,12 @@ public class Operand {
      * construct operand from string token.
      */
     public Operand(String token){
-        try{//try parsing token into an integer
+        /*try{//try parsing token into an integer
             this.intOperand = Integer.parseInt(token);
         }catch(Exception e) {//if try throws an exception return false as its not an integer
             System.out.println("Exception thrown in Operand class, token could not be parsed");
-        }
+        }*/
+        this.intOperand = Integer.parseInt(token);
     }
 
     /**

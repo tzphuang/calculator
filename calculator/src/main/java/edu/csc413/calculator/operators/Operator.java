@@ -15,7 +15,7 @@ public abstract class Operator {
     // HashMap operators = new HashMap();
     // operators.put( "+", new AdditionOperator() );
     // operators.put( "-", new SubtractionOperator() );
-    
+
     private static HashMap<String, Operator> operators; //operators is the name of my map
 
     static{//static block used to initialize the hashmap for operators only once
