@@ -13,7 +13,7 @@ public class Evaluator {
   private Stack<Operand> operandStack;
   private Stack<Operator> operatorStack;
   private StringTokenizer expressionTokenizer;
-  private final String delimiters = " +/*-^";
+  private final String delimiters = " +/*-^()";
 
   public Evaluator() {
     operandStack = new Stack<>();
@@ -54,7 +54,7 @@ public class Evaluator {
 
           Operator newOperator = Operator.getOperator(expressionToken);
 
-          //check to see if this while loop fits the alogrithm asserted earlier
+          //check to see if this while loop fits the algorithm asserted earlier
           while (operatorStack.peek().priority() >= newOperator.priority() )
           {
 
@@ -62,18 +62,13 @@ public class Evaluator {
             // push the 1 then the 2 and then do the subtraction operation
             // This means that the first number to be popped is the
             // second operand, not the first operand - see the following code
-            Operator operatorFromStack = operatorStack.pop();
-            Operand operandTwo = operandStack.pop();
-            Operand operandOne = operandStack.pop();
-            Operand result = operatorFromStack.execute( operandOne, operandTwo );
-            operandStack.push( result );
+            processAnOperator();
           }
 
           operatorStack.push( newOperator );
         }
       }
     }
-
 
     // Control gets here when we've picked up all of the tokens; you must add
     // code to complete the evaluation - consider how the code given here
@@ -84,13 +79,21 @@ public class Evaluator {
     // that is, we should keep evaluating the operator stack until it is empty;
     // Suggestion: create a method that processes the operator stack until empty.
 
-    return 0; //remember to change return 0 to the ACTUAL output of the expression
+    while(!operatorStack.empty()){
+      if(expressionToken.equals(")")){
+
+      }
+    }
+
+    Operand grandTotal = operandStack.pop(); //pops the last operand which is the total evaluation
+    return grandTotal.getValue(); //returns its value
   }
 
-  /*private void processAnOperator(){
-    Operand operand2 = operandStack.pop();
-    Operand operand1 = operandStack.pop();
-    Operator operatorCurrent = operatorStack.pop();
-    Operand
-  }*/
+  private void processAnOperator(){
+    Operator operatorFromStack = operatorStack.pop();
+    Operand operandTwo = operandStack.pop();
+    Operand operandOne = operandStack.pop();
+    Operand result = operatorFromStack.execute( operandOne, operandTwo );
+    operandStack.push( result );
+  }
 }
