@@ -34,7 +34,8 @@ public class Evaluator {
 
 
 
-    while ( this.expressionTokenizer.hasMoreTokens() ) {
+    while ( this.expressionTokenizer.hasMoreTokens() )
+    {
       // filter out spaces
       if ( !( expressionToken = this.expressionTokenizer.nextToken() ).equals( " " )) {
         // check if token is an operand
@@ -85,4 +86,11 @@ public class Evaluator {
 
     return 0; //remember to change return 0 to the ACTUAL output of the expression
   }
+
+  /*private void processAnOperator(){
+    Operand operand2 = operandStack.pop();
+    Operand operand1 = operandStack.pop();
+    Operator operatorCurrent = operatorStack.pop();
+    Operand
+  }*/
 }
