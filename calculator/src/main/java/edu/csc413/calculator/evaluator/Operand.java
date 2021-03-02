@@ -44,7 +44,7 @@ public class Operand {
         try{//try parsing token into an integer
             number = Integer.parseInt(token);
         }catch(Exception e) {//if try throws an exception return false as its not an integer
-            System.out.println("Exception thrown in Operand class, token could not be parsed");
+            //System.out.println("Exception thrown in Operand class, token could not be parsed");
             return false;
         }
         return true;//return true if the try block works

@@ -46,26 +46,57 @@ public class Evaluator {
             throw new InvalidTokenException(expressionToken);
           }
 
-
-          // TODO Operator is abstract - these two lines will need to be fixed:
-          // The Operator class should contain an instance of a HashMap,
-          // and values will be instances of the Operators.  See Operator class
-          // skeleton for an example.
-
-          Operator newOperator = Operator.getOperator(expressionToken);
-
-          //check to see if this while loop fits the algorithm asserted earlier
-          while (operatorStack.peek().priority() >= newOperator.priority() )
+          if(expressionToken.equals(")"))
+          //for when current token is closed parenthesis
           {
-
-            // note that when we eval the expression 1 - 2 we will
-            // push the 1 then the 2 and then do the subtraction operation
-            // This means that the first number to be popped is the
-            // second operand, not the first operand - see the following code
-            processAnOperator();
+            //this "if' statement is to process the stacks when the token is a ")"
+            if (expressionToken.equals(")"))
+            {
+              boolean openParenthesisNotReached = true;
+              while (openParenthesisNotReached)
+              {
+                //this "if" block inside the while loop is
+                if(operatorStack.peek().priority() == 0) //if the priority is 0 that means its a closed parenthesis, "("
+                {
+                  operatorStack.pop();//gets rid of the extra open parenthesis
+                  openParenthesisNotReached = false;
+                }
+                else
+                {
+                  processAnOperator();
+                }
+              }
+            }
           }
+          else if(expressionToken.equals("("))
+          //for when current token is open parenthesis
+          {
+            operatorStack.push(Operator.getOperator(expressionToken));
+          }
+          else
+          //Operator is one of these "+/*-^" so store it as a new operator to be push onto Operatorstack
+          {
+            // TODO Operator is abstract - these two lines will need to be fixed:
+            // The Operator class should contain an instance of a HashMap,
+            // and values will be instances of the Operators.  See Operator class
+            // skeleton for an example.
 
-          operatorStack.push( newOperator );
+            Operator newOperator = Operator.getOperator(expressionToken);
+
+            while (!operatorStack.empty() && operatorStack.peek().priority() >= newOperator.priority())
+            //if top of the stack operator's priority is greater than new operator's priority
+            //process the current top of the operator stack
+            {
+
+              // note that when we eval the expression 1 - 2 we will
+              // push the 1 then the 2 and then do the subtraction operation
+              // This means that the first number to be popped is the
+              // second operand, not the first operand - see the following code
+              processAnOperator();
+            }
+
+            operatorStack.push( newOperator );
+          }
         }
       }
     }
@@ -79,10 +110,9 @@ public class Evaluator {
     // that is, we should keep evaluating the operator stack until it is empty;
     // Suggestion: create a method that processes the operator stack until empty.
 
-    while(!operatorStack.empty()){
-      if(expressionToken.equals(")")){
-
-      }
+    while(!operatorStack.empty()) //processes what is left in the operator stack
+    {
+      processAnOperator();
     }
 
     Operand grandTotal = operandStack.pop(); //pops the last operand which is the total evaluation
