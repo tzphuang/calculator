@@ -1,5 +1,7 @@
 package edu.csc413.calculator.evaluator;
 
+import edu.csc413.calculator.exceptions.InvalidTokenException;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -14,7 +16,7 @@ public class EvaluatorUI extends JFrame implements ActionListener {
     // numbered from left to right, top to bottom
     // bText[] array contains the text for corresponding buttons
     private static final String[] buttonText = {
-        "7", "8", "9", "+", "4", "5", "6", "- ", "1", "2", "3",
+        "7", "8", "9", "+", "4", "5", "6", "-", "1", "2", "3",
         "*", "0", "^", "=", "/", "(", ")", "C", "CE"
     };
 
@@ -72,6 +74,106 @@ public class EvaluatorUI extends JFrame implements ActionListener {
      */
     public void actionPerformed(ActionEvent actionEventObject) {
 
+        String currentLine = this.expressionTextField.getText(); //stores the current string into
+
+        String buttonPress = actionEventObject.getActionCommand();
+
+        switch(buttonPress)
+        {
+            case "1" :
+                this.expressionTextField.setText(currentLine + buttonPress);
+                break;
+
+            case "2" :
+                this.expressionTextField.setText(currentLine + buttonPress);
+                break;
+
+            case "3" :
+                this.expressionTextField.setText(currentLine + buttonPress);
+                break;
+
+            case "4" :
+                this.expressionTextField.setText(currentLine + buttonPress);
+                break;
+
+            case "5" :
+                this.expressionTextField.setText(currentLine + buttonPress);
+                break;
+
+            case "6" :
+                this.expressionTextField.setText(currentLine + buttonPress);
+                break;
+
+            case "7" :
+                this.expressionTextField.setText(currentLine + buttonPress);
+                break;
+
+            case "8" :
+                this.expressionTextField.setText(currentLine + buttonPress);
+                break;
+
+            case "9" :
+                this.expressionTextField.setText(currentLine + buttonPress);
+                break;
+
+            case "0" :
+                this.expressionTextField.setText(currentLine + buttonPress);
+                break;
+
+            case "^" :
+                this.expressionTextField.setText(currentLine + buttonPress);
+                break;
+
+            case "+" :
+                this.expressionTextField.setText(currentLine + buttonPress);
+                break;
+
+            case "-" :
+                this.expressionTextField.setText(currentLine + buttonPress);
+                break;
+
+            case "*" :
+                this.expressionTextField.setText(currentLine + buttonPress);
+                break;
+
+            case "/" :
+                this.expressionTextField.setText(currentLine + buttonPress);
+                break;
+
+            case "(" :
+                this.expressionTextField.setText(currentLine + buttonPress);
+                break;
+
+            case ")" :
+                this.expressionTextField.setText(currentLine + buttonPress);
+                break;
+
+            case "=" :
+                Evaluator currEvaluator = new Evaluator();
+                try {
+                    String result = Integer.toString(currEvaluator.evaluateExpression(currentLine));
+                    this.expressionTextField.setText(result);
+                } catch (InvalidTokenException e) {
+                    e.printStackTrace();
+                }
+                break;
+
+            case "C" :
+                if(!"".equals(this.expressionTextField.getText())) //if the text field is not empty do the below
+                {
+                    String removedLastChar = this.expressionTextField.getText();
+                    removedLastChar = removedLastChar.substring(0, removedLastChar.length() - 1);
+                    this.expressionTextField.setText(removedLastChar);
+                }
+                break;
+
+            case "CE" :
+                this.expressionTextField.setText("");
+                break;
+
+            default :
+                System.out.println("Invalid Button Press!");
+        }
 
     }
 }
